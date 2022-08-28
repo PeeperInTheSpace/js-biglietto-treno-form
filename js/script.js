@@ -19,6 +19,7 @@ form.addEventListener('submit', function() {
     console.log(PrezzoBiglietto); 
 
     // Condizione sconto
+    
     if (isNaN(KMInseriti) || isNaN(EtaInserita)) {
 
         alert('Non hai inserito dei numeri');
@@ -37,7 +38,7 @@ form.addEventListener('submit', function() {
          console.log(scontoApplicato); 
     } 
 
-    // // Calcolo del prezzo finale del biglietto con possibile sconto 
+    // Calcolo del prezzo finale del biglietto con possibile sconto 
 
     const prezzoFinale = PrezzoBiglietto - scontoApplicato; 
     console.log(prezzoFinale); 
