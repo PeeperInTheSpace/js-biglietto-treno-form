@@ -1,53 +1,53 @@
 const costoKM = 0.21;
 let scontoApplicato = 0;
-// Prendere il primo elemento con la classe e non con ID
-const bottoneConferma = document.querySelector('btn-success')
-// querySelectorAll per prendere tutti gli elementi con quella classe
-const stampanomecognome = document.getElementById('stampanomecognome');
-const stampaprezzo = document.getElementById('stampaprezzo');
-
-
-
-let nameSurname = document.getElementById('namesurname'); 
-console.log(nameSurname); 
-
-let KMInseriti = document.getElementById('kilometers'); 
-console.log(KMInseriti); 
-
-let EtaInserita = document.getElementById('age'); 
-console.log(EtaInserita); 
+const form = document.getElementById('form');
 
 // Calcolo prezzo del biglietto
-bottoneConferma.addEventListener('click', function() {
+form.addEventListener('submit', function() {
+
+    let nameSurname = document.getElementById('namesurname').value; 
+    console.log(nameSurname); 
+
+    let KMInseriti = document.getElementById('kilometers').value; 
+    console.log(KMInseriti); 
+
+    let EtaInserita = document.getElementById('age').value; 
+    console.log(EtaInserita);   
+
     
-    stampanomecognome.innerHTML = nameSurname.value
-    
-    let PrezzoBiglietto = costoKM * KMInseriti.value
+    let PrezzoBiglietto = costoKM * KMInseriti;
     console.log(PrezzoBiglietto); 
 
-    // Calcolo del prezzo finale del biglietto con possibile sconto 
-    
-    const prezzoFinale = PrezzoBiglietto - scontoApplicato; 
-    console.log(prezzoFinale); 
-    
-    // Stampa del prezzo su schermo 
-
     // Condizione sconto
+    if (isNaN(KMInseriti) || isNaN(EtaInserita)) {
+
+        alert('Non hai inserito dei numeri');
+
+    }
+
     if (EtaInserita < 18) { 
     
-        scontoApplicato = (PrezzoBiglietto * 0.2); 
-        console.log(scontoApplicato); 
+         scontoApplicato = (PrezzoBiglietto * 0.2); 
+         console.log(scontoApplicato); 
     } 
 
     else if (EtaInserita > 65) { 
     
-        scontoApplicato = (PrezzoBiglietto * 0.4); 
-        console.log(scontoApplicato); 
+         scontoApplicato = (PrezzoBiglietto * 0.4); 
+         console.log(scontoApplicato); 
     } 
-    
-    const printPrezzo = prezzoFinale.toFixed(2); 
-    
-    stampaprezzo.innerHTML = "Il prezzo del biglietto è: €" + printPrezzo;
+
+    // // Calcolo del prezzo finale del biglietto con possibile sconto 
+
+    const prezzoFinale = PrezzoBiglietto - scontoApplicato; 
+    console.log(prezzoFinale); 
+
+    // Stampa dei risultati
+
+    document.getElementById('codicebiglietto').innerHTML = Math.floor(Math.random()*100000);
+    document.getElementById('numerocarrozza').innerHTML = Math.floor(Math.random()*15);
+    document.getElementById('stampanomecognome').innerHTML = nameSurname;
+    document.getElementById('stampaprezzo').innerHTML = "Il prezzo del biglietto è: €" + prezzoFinale.toFixed(2);
     
 }
 
